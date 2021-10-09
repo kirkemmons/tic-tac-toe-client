@@ -1,1 +1,13 @@
 @import '~bootstrap/scss/bootstrap';
+
+.border {
+  background-color: #938ba1;
+  border: 3px solid black;
+  margin: 20px;
+  padding: 20px;
+}
+
+// select the section with the id 'after-sign-in' and make it not display on the page
+#after-sign-in {
+  display: none;
+}
