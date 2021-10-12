@@ -60,9 +60,47 @@ const onSignOut = (event) => {
     // otherwise run a signUpFailure function STEP 13
     .catch(ui.signOutFailure)
 };
+const onNewGame = () => {
+  // make up POST / sign-up request, pass it the email/password/pw confirmation STEP 11
+  api
+    .newGame()
+    // if our sign-up request is successful, run the signUpSuccess function STEP 12
+    .then(ui.newGameSuccess)
+    // otherwise run a signUpFailure function STEP 13
+    .catch(ui.newGameFailure);
+};
+
+let player = 1
+
+const onClick = (event) => {
+  const box = event.target
+  if (isBoxEmpty(box)) {
+    if (player === 1) {
+      box.innerHTML = 'X';
+      player = 2;
+    } else {
+      box.innerHTML = 'O';
+      player = 1;
+    }
+  } else {
+    alert('Choose another square!')
+  }
+}
+
+function isBoxEmpty (node) {
+  console.log(node)
+  if (node.innerHTML === '') {
+    return true
+  } else {
+    return false
+  }
+}
 
 module.exports = {
   onSignUp,
   onSignIn,
-  onSignOut
+  onSignOut,
+  onNewGame,
+  onClick,
+  isBoxEmpty
 };

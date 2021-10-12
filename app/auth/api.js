@@ -12,7 +12,7 @@ const signUp = (formData) => {
     method: 'POST',
     data: formData
   })
-};
+}
 const signIn = (formData) => {
   // make a request to post/sign-in
   return $.ajax({
@@ -20,20 +20,31 @@ const signIn = (formData) => {
     method: 'POST',
     data: formData
   })
-};
+}
 const signOut = (formData) => {
   // make a request to post/sign-out
   return $.ajax({
     url: `${config.apiUrl}/sign-out`,
-    method: "DELETE",
+    method: 'DELETE',
     headers: {
-      Authorization: "Bearer " + store.user.token
+      Authorization: 'Bearer ' + store.user.token
     }
   })
-};
+}
+const newGame = () => {
+  return $.ajax({
+    url: `${config.apiUrl}/games`,
+    method: 'POST',
+    data: {},
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    }
+  })
+}
 
 module.exports = {
   signUp,
   signIn,
-  signOut
-};
+  signOut,
+  newGame
+}

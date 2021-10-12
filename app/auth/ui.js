@@ -41,6 +41,19 @@ const signOutSuccess = function (responseData) {
   $('#before-sign-in').show()
 }
 
+const newGameSuccess = function (responseData) {
+  store.currentGame = responseData.currentGame
+  console.log(responseData)
+  // tell the user it was successful
+  $('#game-display').text('Signed in successfully!')
+
+  $('#game-display').removeClass()
+  $('#game-display').addClass('text-success')
+
+  $('form').trigger('reset')
+  $('#game-section').show()
+}
+
 const signUpFailure = function (error) {
   $('#error-message').text('Sign up failed')
 
@@ -48,7 +61,7 @@ const signUpFailure = function (error) {
   $('#error-message').addClass('text-danger')
 
   console.log('error is', error)
-};
+}
 const signInFailure = function (error) {
   $('#error-message').text('Sign in failed')
 
@@ -56,7 +69,7 @@ const signInFailure = function (error) {
   $('#error-message').addClass('text-danger')
 
   console.log('error is', error)
-};
+}
 const signOutFailure = function (error) {
   $('#error-message').text('Sign out failed')
 
@@ -64,8 +77,15 @@ const signOutFailure = function (error) {
   $('#error-message').addClass('text-danger')
 
   console.log('error is', error)
-};
+}
+const newGameFailure = function (error) {
+  $('#error-message').text('Sign in failed')
 
+  $('#error-message').removeClass()
+  $('#error-message').addClass('text-danger')
+
+  console.log('error is', error)
+}
 
 module.exports = {
   signUpSuccess,
@@ -73,5 +93,7 @@ module.exports = {
   signInSuccess,
   signInFailure,
   signOutSuccess,
-  signOutFailure
-};
+  signOutFailure,
+  newGameSuccess,
+  newGameFailure
+}
