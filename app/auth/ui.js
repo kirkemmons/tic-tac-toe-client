@@ -39,18 +39,17 @@ const signOutSuccess = function (responseData) {
   $('#after-sign-in').hide()
 
   $('#before-sign-in').show()
+  $('#game-section').hide()
 }
 
 const newGameSuccess = function (responseData) {
-  store.currentGame = responseData.currentGame
-  console.log(responseData)
-  // tell the user it was successful
-  $('#game-display').text('Signed in successfully!')
+  console.log('RAW RESPONSE', responseData)
+  console.log('STORE BEFORE', store)
 
-  $('#game-display').removeClass()
-  $('#game-display').addClass('text-success')
+  store.game = responseData.game
 
-  $('form').trigger('reset')
+  console.log('STORE AFTER', store)
+
   $('#game-section').show()
 }
 

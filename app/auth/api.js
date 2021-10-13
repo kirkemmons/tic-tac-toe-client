@@ -32,6 +32,7 @@ const signOut = (formData) => {
   })
 }
 const newGame = () => {
+  // make a request to post/games
   return $.ajax({
     url: `${config.apiUrl}/games`,
     method: 'POST',

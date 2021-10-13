@@ -2,7 +2,8 @@
 'use strict'
 
 // require the getFormFields function to get data from our forms STEP 7
-const getFormFields = require('../../lib/get-form-fields')
+const getFormFields = require('../../lib/get-form-fields');
+const store = require('../store');
 
 // require our api auth function STEP 5
 const api = require('./api')
@@ -26,47 +27,44 @@ const onSignUp = (event) => {
     // otherwise run a signUpFailure function STEP 13
     .catch(ui.signUpFailure)
 };
+
 const onSignIn = (event) => {
-  // prevent the default action of browser refreshing STEP 8
   event.preventDefault()
 
-  // event.target is the form that casued the 'submit' event STEP 9
   const form = event.target
-  // get the data from our form element STEP 10
-  const formData = getFormFields(form)
 
-  // make up POST / sign-up request, pass it the email/password/pw confirmation STEP 11
+  const formData = getFormFields(form)
+  console.log(formData)
+
   api
     .signIn(formData)
-    // if our sign-up request is successful, run the signUpSuccess function STEP 12
+
     .then(ui.signInSuccess)
-    // otherwise run a signUpFailure function STEP 13
+
     .catch(ui.signInFailure)
 };
+
 const onSignOut = (event) => {
-  // prevent the default action of browser refreshing STEP 8
   event.preventDefault()
 
-  // event.target is the form that casued the 'submit' event STEP 9
   const form = event.target
-  // get the data from our form element STEP 10
+
   const formData = getFormFields(form)
 
-  // make up POST / sign-up request, pass it the email/password/pw confirmation STEP 11
   api
     .signOut(formData)
-    // if our sign-up request is successful, run the signUpSuccess function STEP 12
+
     .then(ui.signOutSuccess)
-    // otherwise run a signUpFailure function STEP 13
+
     .catch(ui.signOutFailure)
 };
+
 const onNewGame = () => {
-  // make up POST / sign-up request, pass it the email/password/pw confirmation STEP 11
   api
     .newGame()
-    // if our sign-up request is successful, run the signUpSuccess function STEP 12
+
     .then(ui.newGameSuccess)
-    // otherwise run a signUpFailure function STEP 13
+
     .catch(ui.newGameFailure);
 };
 
@@ -76,25 +74,35 @@ const onClick = (event) => {
   const box = event.target
   if (isBoxEmpty(box)) {
     if (player === 1) {
+      // console.log(box)
+      // console.log(box.id)
+      console.log(store)
+      addMoveToArray('X', box.id)
       box.innerHTML = 'X';
       player = 2;
     } else {
+      // console.log(box.id)
+      addMoveToArray('O', box.id);
       box.innerHTML = 'O';
       player = 1;
     }
   } else {
     alert('Choose another square!')
   }
-}
+};
 
-function isBoxEmpty (node) {
-  console.log(node)
-  if (node.innerHTML === '') {
+function isBoxEmpty (box) {
+  console.log(box)
+  if (box.innerHTML === '') {
     return true
   } else {
     return false
   }
-}
+};
+
+const addMoveToArray = (player, index) => {
+  store.game.cells[index] = player
+};
 
 module.exports = {
   onSignUp,
@@ -102,5 +110,6 @@ module.exports = {
   onSignOut,
   onNewGame,
   onClick,
-  isBoxEmpty
+  isBoxEmpty,
+  addMoveToArray
 };
