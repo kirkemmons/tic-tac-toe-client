@@ -85,8 +85,9 @@ const winningCombinations = [
 const winningMessage = document.querySelector('[data-winning-message]')
 const winningMessageElement = document.getElementById('winningMessage')
 
+// startGame()
 
-function startGame() {
+function startGame () {
   playerO = false
   boxElements.forEach(box => {
     box.onClick()
@@ -96,6 +97,7 @@ function startGame() {
 const onClick = (event) => {
   console.log('clicked')
   const box = event.target
+  console.log(box)
   // if player is 'O', return oClass otherwise return xClass
   const currentClass = playerO ? oClass : xClass
   placeValue(box, currentClass)
@@ -105,34 +107,34 @@ const onClick = (event) => {
   } else if (isDraw()) {
     endGame(true)
   } else {
-  switchTurn()
+    switchTurn()
   }
 };
 
-// function isBoxEmpty (box) {
-//   console.log(box)
-//   if (box.innerHTML === '') {
-//     return true
-//   } else {
-//     return false
-//   }
-// };
+function isClicked (box) {
+  console.log(box)
+  if (box.innerHTML === '') {
+    return true
+  } else {
+    return false
+  }
+};
 
-function placeValue(box, currentClass) {
+function placeValue (box, currentClass) {
   box.classList.add(currentClass)
 };
 
-function switchTurn() {
+function switchTurn () {
   playerO = !playerO
 };
 
-function isDraw() {
+function isDraw () {
   return [...boxElements].every(box => {
     return box.classList.contains(oClass) || box.classList.contains(xClass)
   })
 }
 
-function checkForWinner(currentClass) {
+function checkForWinner (currentClass) {
   // return true if any of the values within the array are true
   // loop over all of the possible combinations in the array
   return winningCombinations.some(combination => {
@@ -145,7 +147,7 @@ function checkForWinner(currentClass) {
   })
 }
 
-function endGame(draw) {
+function endGame (draw) {
   if (draw) {
     winningMessage.innerHTML = "It's a draw!"
   } else {
@@ -164,6 +166,7 @@ module.exports = {
   onSignOut,
   onNewGame,
   onClick,
+  isClicked,
   placeValue,
   addMoveToArray,
   switchTurn,

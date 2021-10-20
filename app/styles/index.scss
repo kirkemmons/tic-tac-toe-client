@@ -1,9 +1,5 @@
 @import '~bootstrap/scss/bootstrap';
 
-#before-sign-in {
-  text-align: center;
- 
-}
 
 #game-board {
     display: flex;
@@ -12,9 +8,39 @@
     width: 200px;
 }
 
+#winningMessage {
+  display: flex;
+  justify-content: center;
+}
+
 // select the section with the id 'after-sign-in' and make it not display on the page
 #game-section, #after-sign-in {
   display: none;
+  text-align: center;
+}
+
+#new-game {
+  max-width: 50%;
+}
+
+input[type=email], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.btn {
+  width: 100%;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .box {
