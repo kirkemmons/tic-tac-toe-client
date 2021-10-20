@@ -59,16 +59,17 @@ const onSignOut = (event) => {
     .catch(ui.signOutFailure)
 };
 
-const onNewGame = () => {
+const onNewGame = (box) => {
   api
     .newGame()
 
     .then(ui.newGameSuccess)
 
-    .catch(ui.newGameFailure);
+    .catch(ui.newGameFailure)
 };
 
 let playerO
+let isGameOver = false
 const xClass = 'X'
 const oClass = 'O'
 const boxElements = document.querySelectorAll('[data-box]')
@@ -85,42 +86,51 @@ const winningCombinations = [
 const winningMessage = document.querySelector('[data-winning-message]')
 const winningMessageElement = document.getElementById('winningMessage')
 
-// startGame()
+startGame()
 
 function startGame () {
   playerO = false
   boxElements.forEach(box => {
-    box.onClick()
   })
 };
 
 const onClick = (event) => {
-  console.log('clicked')
-  const box = event.target
-  console.log(box)
+  console.log('clicked');
+  const box = event.target;
+  console.log(box);
   // if player is 'O', return oClass otherwise return xClass
-  const currentClass = playerO ? oClass : xClass
-  placeValue(box, currentClass)
+  const currentClass = playerO ? oClass : xClass;
+  console.log(currentClass)
+  if (hasValue(box)) {
+    console.log('Box has a value. Choose another square!');
+    return;
+  }
+  if (isGameOver) {
+    console.log('Game is already over. Play New Game!');
+    return;
+  }
+  console.log('Box does not have a value.');
+  placeValue(box, currentClass);
   if (checkForWinner(currentClass)) {
-    console.log('winner')
-    endGame(false)
+    console.log('Winner!');
+    endGame(false);
   } else if (isDraw()) {
-    endGame(true)
+    endGame(true);
   } else {
-    switchTurn()
+    switchTurn();
   }
 };
 
-function isClicked (box) {
-  console.log(box)
+function hasValue (box) {
   if (box.innerHTML === '') {
-    return true
-  } else {
     return false
+  } else {
+    return true
   }
 };
 
 function placeValue (box, currentClass) {
+  box.innerHTML = currentClass
   box.classList.add(currentClass)
 };
 
@@ -129,10 +139,11 @@ function switchTurn () {
 };
 
 function isDraw () {
+  // destructured boxElements into an array to be used by the every method
   return [...boxElements].every(box => {
     return box.classList.contains(oClass) || box.classList.contains(xClass)
   })
-}
+};
 
 function checkForWinner (currentClass) {
   // return true if any of the values within the array are true
@@ -145,19 +156,20 @@ function checkForWinner (currentClass) {
       return boxElements[index].classList.contains(currentClass)
     })
   })
-}
+};
 
 function endGame (draw) {
   if (draw) {
-    winningMessage.innerHTML = "It's a draw!"
+    winningMessage.innerHTML = "It's a draw! Play again?"
   } else {
     winningMessage.innerHTML = `${playerO ? "O's" : "X's"} Wins!`
   }
+  isGameOver = true
   winningMessageElement.classList.add('show')
 };
 
-const addMoveToArray = (player, index) => {
-  store.game.cells[index] = player
+const addMoveToArray = (currentClass, index) => {
+  store.game.cells[index] = currentClass
 };
 
 module.exports = {
@@ -166,7 +178,7 @@ module.exports = {
   onSignOut,
   onNewGame,
   onClick,
-  isClicked,
+  hasValue,
   placeValue,
   addMoveToArray,
   switchTurn,
