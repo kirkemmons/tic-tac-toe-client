@@ -86,6 +86,7 @@ const newGameFailure = function (error) {
   console.log('error is', error)
 }
 
+
 module.exports = {
   signUpSuccess,
   signUpFailure,

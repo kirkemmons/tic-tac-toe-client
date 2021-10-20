@@ -68,36 +68,90 @@ const onNewGame = () => {
     .catch(ui.newGameFailure);
 };
 
-let player = 1
+let playerO
+const xClass = 'X'
+const oClass = 'O'
+const boxElements = document.querySelectorAll('[data-box]')
+const winningCombinations = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6]
+];
+const winningMessage = document.querySelector('[data-winning-message]')
+const winningMessageElement = document.getElementById('winningMessage')
+
+
+function startGame() {
+  playerO = false
+  boxElements.forEach(box => {
+    box.onClick()
+  })
+};
 
 const onClick = (event) => {
+  console.log('clicked')
   const box = event.target
-  if (isBoxEmpty(box)) {
-    if (player === 1) {
-      // console.log(box)
-      // console.log(box.id)
-      console.log(store)
-      addMoveToArray('X', box.id)
-      box.innerHTML = 'X';
-      player = 2;
-    } else {
-      // console.log(box.id)
-      addMoveToArray('O', box.id);
-      box.innerHTML = 'O';
-      player = 1;
-    }
+  // if player is 'O', return oClass otherwise return xClass
+  const currentClass = playerO ? oClass : xClass
+  placeValue(box, currentClass)
+  if (checkForWinner(currentClass)) {
+    console.log('winner')
+    endGame(false)
+  } else if (isDraw()) {
+    endGame(true)
   } else {
-    alert('Choose another square!')
+  switchTurn()
   }
 };
 
-function isBoxEmpty (box) {
-  console.log(box)
-  if (box.innerHTML === '') {
-    return true
+// function isBoxEmpty (box) {
+//   console.log(box)
+//   if (box.innerHTML === '') {
+//     return true
+//   } else {
+//     return false
+//   }
+// };
+
+function placeValue(box, currentClass) {
+  box.classList.add(currentClass)
+};
+
+function switchTurn() {
+  playerO = !playerO
+};
+
+function isDraw() {
+  return [...boxElements].every(box => {
+    return box.classList.contains(oClass) || box.classList.contains(xClass)
+  })
+}
+
+function checkForWinner(currentClass) {
+  // return true if any of the values within the array are true
+  // loop over all of the possible combinations in the array
+  return winningCombinations.some(combination => {
+    // check if all the values in the box elements have the same class
+    return combination.every(index => {
+      // check the class list at each index and check if it contains the current class
+      // if every single box inside of the combinations is correct in at least one of the winning combinations then there is a winner
+      return boxElements[index].classList.contains(currentClass)
+    })
+  })
+}
+
+function endGame(draw) {
+  if (draw) {
+    winningMessage.innerHTML = "It's a draw!"
   } else {
-    return false
+    winningMessage.innerHTML = `${playerO ? "O's" : "X's"} Wins!`
   }
+  winningMessageElement.classList.add('show')
 };
 
 const addMoveToArray = (player, index) => {
@@ -110,6 +164,11 @@ module.exports = {
   onSignOut,
   onNewGame,
   onClick,
-  isBoxEmpty,
-  addMoveToArray
+  placeValue,
+  addMoveToArray,
+  switchTurn,
+  startGame,
+  checkForWinner,
+  endGame,
+  isDraw
 };
