@@ -35,5 +35,5 @@ This application allows a user to play a tic-tac-toe game after they have create
 
 ## Wireframes
 
-![Sign-in page](https://imgur.com/cgQyoJo/)
-![Tic tac toe page](https://imgur.com/qz923fV)
+![Sign-in page](https://i.ibb.co/4gW4w78/Sign-in-page-wireframe.png)
+![Tic tac toe page](https://i.ibb.co/8gyhdry/Tic-tac-toe-board.png)
