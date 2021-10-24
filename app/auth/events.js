@@ -171,7 +171,7 @@ function endGame (draw) {
   if (draw) {
     winningMessage.innerHTML = "It's a draw! Bang that restart button to play again!"
   } else {
-    winningMessage.innerHTML = `Finally! ${playerO ? "O's" : "X's"} Win!`
+    winningMessage.innerHTML = `${playerO ? "O's" : "X's"} Win!`
   }
   isGameOver = true
   winningMessageElement.classList.add('show')
