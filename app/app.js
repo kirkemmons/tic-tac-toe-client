@@ -12,4 +12,5 @@ $(() => {
   $('#sign-out').on('submit', authEvents.onSignOut)
   $('#new-game').on('click', authEvents.onNewGame)
   $('.box').on('click', authEvents.onClick)
+  $('#restart-button').on('click', authEvents.restartGame)
 })

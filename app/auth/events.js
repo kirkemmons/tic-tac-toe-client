@@ -94,6 +94,15 @@ function startGame () {
   })
 };
 
+const restartGame = (event) => {
+  $('.box').text('')
+  $('.box').removeClass('X')
+  $('.box').removeClass('O')
+  isGameOver = false
+  winningMessage.innerHTML = ('You should probably play again. Bang that board!')
+  playerO = false
+}
+
 const onClick = (event) => {
   console.log('clicked');
   const box = event.target;
@@ -160,9 +169,9 @@ function checkForWinner (currentClass) {
 
 function endGame (draw) {
   if (draw) {
-    winningMessage.innerHTML = "It's a draw! Play again?"
+    winningMessage.innerHTML = "It's a draw! Bang that restart button to play again!"
   } else {
-    winningMessage.innerHTML = `${playerO ? "O's" : "X's"} Wins!`
+    winningMessage.innerHTML = `Finally! ${playerO ? "O's" : "X's"} Win!`
   }
   isGameOver = true
   winningMessageElement.classList.add('show')
@@ -185,5 +194,6 @@ module.exports = {
   startGame,
   checkForWinner,
   endGame,
-  isDraw
+  isDraw,
+  restartGame
 };

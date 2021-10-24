@@ -16,10 +16,11 @@ const signInSuccess = function (responseData) {
   store.user = responseData.user
 
   // tell the user it was successful
-  $('#game-display').text('Signed in successfully!')
+  $('#game-display').text('Signed in successfully! Hit New Game!')
 
   $('#game-display').removeClass()
   $('#game-display').addClass('text-success')
+  $('#game-display').fadeOut(10000)
 
   $('form').trigger('reset')
 
