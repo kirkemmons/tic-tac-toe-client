@@ -11,95 +11,127 @@
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
-    <body class="border">
+    <body class="container-fluid">
       <h1>Tic Tac Toe Game</h1>
       <hr>
 
-      <section id="before-sign-in">
+      <section id="before-sign-in" class="inline-block">
         <!-- sign up form goes here. STEP 1-->
-        <form id="sign-up">
-          <fieldset>
-            <legend>New User Sign-Up</legend>
+        <div id="left-side">
+          <form id="sign-up" class="border form-inline">
+            <fieldset>
+              <legend>New User Sign-Up</legend>
 
-            <label>Email:</label>
-            <input type="email" name="credentials[email]" placeholder="Email Address" required>
+              <label>Email:</label>
+              <input type="email" name="credentials[email]" placeholder="Email Address" required>
 
-            <label>Password:</label>
-            <input type="password" name="credentials[password]" placeholder="Password (case sensitive)" required>
+              <label>Password:</label>
+              <input type="password" name="credentials[password]" placeholder="Password (case sensitive)" required>
 
-            <label>Password Confirmation:</label>
-            <input type="password" name="credentials[password_confirmation]" placeholder="Password Confirmation" required>
+              <label>Password Confirmation:</label>
+              <input type="password" name="credentials[password_confirmation]" placeholder="Password Confirmation" required>
+        
+              <button class="btn btn-primary">Sign Up</button>
+            </fieldset>
+          </form>
+        </div>
       
-            <button class="btn btn-primary">Sign Up</button>
-          </fieldset>
-        </form>
-        <hr>
-      
-        <form id="sign-in">
-          <fieldset>
-            <legend>User Sign-In</legend>
+        <div id="right-side">
+          <form id="sign-in" class="border form-inline">
+            <fieldset>
+              <legend>User Sign-In</legend>
 
-            <label>Email:</label>
-            <input type="email" name="credentials[email]" placeholder="Email Address" required>
+              <label>Email:</label>
+              <input type="email" name="credentials[email]" placeholder="Email Address" required>
 
-            <label>Password:</label>
-            <input type="password" name="credentials[password]" placeholder="Password (case sensitive)" required>
-      
-            <button class="btn btn-dark">Sign In</button>
-          </fieldset>
-        </form>
-        <hr>
+              <label>Password:</label>
+              <input type="password" name="credentials[password]" placeholder="Password (case sensitive)" required>
+        
+              <button class="btn btn-dark">Sign In</button>
+            </fieldset>
+          </form>
+        </div>
       </section>
 
       <section id="after-sign-in">
+
+        
       
-        <form id="sign-out">
+        <!-- <form id="sign-out">
           <fieldset>
             
       
             <button class="btn btn-dark">Sign Out</button>
           </fieldset>
-        </form>
+        </form> -->
+        <nav class="navbar fixed-top navbar-light bg-light">
+          <form id="sign-out" class="form-inline btn my-2 my-lg-0">
+            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Log Out</button>
+          </form>
+        </nav>
         <hr>
 
         <button id="new-game" class="btn btn-dark">New Game</button>
         <hr>
 
         <div>
-          <button id="restart-button" class="btn btn-danger">Restart</button>
+          <button id="restart-button" class="btn btn-dark">Restart</button>
         </div>
         <hr>
 
       </section>
 
+      <div class="new-body">
+
       <section id="game-section">
-        <div id="game-board" class="container">
+        <!-- <div id="game-board">
           <div class="row">
-            <div id="1" class="col-4 box" data-box></div>
-            <div id="2" class="col-4 box" data-box></div>
-            <div id="3" class="col-4 box" data-box></div>
-            <div id="4" class="col-4 box" data-box></div>
-            <div id="5" class="col-4 box" data-box></div>
-            <div id="6" class="col-4 box" data-box></div>
-            <div id="7" class="col-4 box" data-box></div>
-            <div id="8" class="col-4 box" data-box></div>
-            <div id="9" class="col-4 box" data-box></div>
+            <div id="1" class="col-4 box" data-box>1</div>
+            <div id="2" class="col-4 box" data-box>2</div>
+            <div id="3" class="col-4 box" data-box>3</div>
+            <div id="4" class="col-4 box" data-box>4</div>
+            <div id="5" class="col-4 box" data-box>5</div>
+            <div id="6" class="col-4 box" data-box>6</div>
+            <div id="7" class="col-4 box" data-box>7</div>
+            <div id="8" class="col-4 box" data-box>8</div>
+            <div id="9" class="col-4 box" data-box>9</div>
           </div>
+        </div> -->
+
+        <div id="game-board">
+          <div id="1" class="box right-border bottom-border" data-box></div>
+          <div id="2" class="box right-border bottom-border" data-box></div>
+          <div id="3" class="box bottom-border" data-box></div>
+          <div id="4" class="box right-border bottom-border" data-box></div>
+          <div id="5" class="box right-border bottom-border" data-box></div>
+          <div id="6" class="box bottom-border" data-box></div>
+          <div id="7" class="box right-border" data-box></div>
+          <div id="8" class="box right-border" data-box></div>
+          <div id="9" class="box" data-box></div>
         </div>
+
+      </div>
         <hr>
+
         <div class="winning-message" id="winningMessage">
           <div data-winning-message></div>
         </div>
+
       </section>
 
       <section>
-          <div id="error-message"></div>
-        
-          <div id="game-display"></div>
-        </section>
+        <div id="error-message"></div>
+      
+        <div id="game-display"></div>
+      </section>
 
-      </body>
-  </html>
+    </div>
+
+  </body>
+
+</html>
+      
+
       
       
       

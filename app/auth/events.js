@@ -99,7 +99,7 @@ const restartGame = (event) => {
   $('.box').removeClass('X')
   $('.box').removeClass('O')
   isGameOver = false
-  winningMessage.innerHTML = ('You should probably play again. Bang that board!')
+  winningMessage.innerHTML = ('Play Again!')
   playerO = false
 }
 
@@ -115,7 +115,7 @@ const onClick = (event) => {
     return;
   }
   if (isGameOver) {
-    console.log('Game is already over. Play New Game!');
+    console.log('Game is over. Play New Game!');
     return;
   }
   console.log('Box does not have a value.');
@@ -169,7 +169,7 @@ function checkForWinner (currentClass) {
 
 function endGame (draw) {
   if (draw) {
-    winningMessage.innerHTML = "It's a draw! Bang that restart button to play again!"
+    winningMessage.innerHTML = "It's a draw! Hit the restart button and play again!"
   } else {
     winningMessage.innerHTML = `${playerO ? "O's" : "X's"} Win!`
   }

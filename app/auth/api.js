@@ -22,7 +22,7 @@ const signIn = (formData) => {
   })
 }
 const signOut = (formData) => {
-  // make a request to post/sign-out
+  // make a request to delete/sign-out
   return $.ajax({
     url: `${config.apiUrl}/sign-out`,
     method: 'DELETE',

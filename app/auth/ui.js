@@ -8,6 +8,7 @@ const signUpSuccess = function (responseData) {
 
   $('#game-display').removeClass()
   $('#game-display').addClass('text-success')
+  $('#game-display').fadeOut(10000)
 
   $('form').trigger('reset')
 }
@@ -16,7 +17,7 @@ const signInSuccess = function (responseData) {
   store.user = responseData.user
 
   // tell the user it was successful
-  $('#game-display').text('Signed in successfully! Hit New Game!')
+  $('#game-display').text('Signed in successfully! Hit New Game to play Tic Tac Toe!')
 
   $('#game-display').removeClass()
   $('#game-display').addClass('text-success')
@@ -34,6 +35,7 @@ const signOutSuccess = function (responseData) {
 
   $('#game-display').removeClass()
   $('#game-display').addClass('text-success')
+  $('#game-display').fadeOut(10000)
 
   $('form').trigger('reset')
 
@@ -59,6 +61,7 @@ const signUpFailure = function (error) {
 
   $('#error-message').removeClass()
   $('#error-message').addClass('text-danger')
+  $('#error-message').fadeOut(10000)
 
   console.log('error is', error)
 }
@@ -67,6 +70,7 @@ const signInFailure = function (error) {
 
   $('#error-message').removeClass()
   $('#error-message').addClass('text-danger')
+  $('#error-message').fadeOut(10000)
 
   console.log('error is', error)
 }
@@ -75,6 +79,7 @@ const signOutFailure = function (error) {
 
   $('#error-message').removeClass()
   $('#error-message').addClass('text-danger')
+  $('#error-message').fadeOut(10000)
 
   console.log('error is', error)
 }
@@ -83,10 +88,10 @@ const newGameFailure = function (error) {
 
   $('#error-message').removeClass()
   $('#error-message').addClass('text-danger')
+  $('#error-message').fadeOut(10000)
 
   console.log('error is', error)
 }
-
 
 module.exports = {
   signUpSuccess,
